@@ -1,3 +1,4 @@
+
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
@@ -9,6 +10,7 @@ import PRODUCTS from '../_mock/products';
 // components
 import Iconify from '../components/iconify';
 // sections
+
 import {
   AppTasks,
   AppNewsUpdate,
@@ -21,6 +23,7 @@ import {
   AppConversionRates,
 } from '../sections/@dashboard/app';
 
+const infuraProjectId = process.env.PRIVATE_GOERLI_ACCOUNT_KEY;
 // ----------------------------------------------------------------------
 const style = {
   position: 'absolute',
@@ -48,6 +51,7 @@ export default function DashboardAppPage() {
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome to RealReview
+
         </Typography>
         <Stack direction="row" alignItems={"flex-end"} justifyContent={"flex-end"} spacing={1} flexShrink={0} sx={{ my: 2 }}>
          <Button onClick={handleOpen} variant="contained">Create Survey</Button>
