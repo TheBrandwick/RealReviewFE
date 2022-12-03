@@ -328,18 +328,7 @@ export default function DashboardAppPage({ createSurvey }) {
 
         </Stack>
         <Grid container spacing={3} sx={{ my: 2 }}>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Review Given" total={714000} icon={'ant-design:book-filled'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Total Earnings" total={1352831} color="info" icon={'ant-design:dollar-circle-filled'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Nft Collected" total={1723315} color="warning" icon={'ant-design:smile-filled'} />
-          </Grid>
-
+          
 
 
           <ProductList products={surveys} />
