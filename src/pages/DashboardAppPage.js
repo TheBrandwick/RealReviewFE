@@ -36,7 +36,8 @@ const init_data = [
     name: "Survey #1",
     reward: "0.5",
     participant_count: "9",
-    status: 'Active'
+    status: 'Active',
+
   },
   {
     name: "Survey #3",
@@ -77,8 +78,22 @@ export default function DashboardAppPage({ createSurvey }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const addNewSurvey = () => {
-    handleClose()
+  const addNewSurvey = (metadata, questions) => {
+    let new_data = {
+      name: metadata.name,
+      reward: metadata.reward_per_participants,
+      participant_count: metadata.no_of_participants,
+      status: 'Active',
+      questions: questions
+    }
+    setTimeout(()=>{
+      handleClose()
+      setTimeout(()=>{
+        setSurveys(prev => ([new_data, ...prev]))
+      },1000)
+      
+    },1000)
+   
   }
   return (
     <>

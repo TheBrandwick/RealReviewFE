@@ -20,6 +20,17 @@ const style = {
 function CreateSurveyForm({ createSurvey, addNewSurvey, onClose }) {
     const [step, setstep] = useState(0);
     const [questions, setQuestions] = useState([]);
+    const [surveyMetadata, setSurveyMetadata] = useState({
+        name:"",
+        no_of_participants:"",
+        reward_per_participants:"",
+        valid_until: "",
+    })
+    const updateMetadata = (key, value) => {
+        let tempMetadata = {...surveyMetadata}
+        tempMetadata[key] = value;
+        setSurveyMetadata(tempMetadata)
+    }
 
     const addQuestions = () => {
         setQuestions(prev => ([...prev, {
@@ -57,12 +68,12 @@ function CreateSurveyForm({ createSurvey, addNewSurvey, onClose }) {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Create Your Survey
                 </Typography>
-                <TextField fullWidth label="Name" id="name" margin="dense" />
-                <TextField type="number" fullWidth label="Participants" id="name" margin="dense" />
-                <TextField type="number" fullWidth label="Reward per participant" id="name" margin="dense" />
+                <TextField fullWidth label="Name" id="name" margin="dense" onChange={(e)=>updateMetadata("name", e.target.value)}/>
+                <TextField type="number" fullWidth label="Participants" id="name" margin="dense" onChange={(e)=>updateMetadata("no_of_participants", e.target.value)}/>
+                <TextField type="number" fullWidth label="Reward per participant" id="name" margin="dense" onChange={(e)=>updateMetadata("reward_per_participants", e.target.value)}/>
 
                 {/* <DatePicker */}
-                <TextField type="date" fullWidth label="" id="fullWidth" margin="dense" />
+                <TextField type="date" fullWidth label="" id="fullWidth" margin="dense" onChange={(e)=>updateMetadata("valid_until", e.target.value)}/>
                 <Stack margin="dense"><Button variant='contained' onClick={() => {setstep(step + 1); addQuestions();}}>Next</Button></Stack>
             </>}
             {step >=1 && <>
@@ -77,7 +88,7 @@ function CreateSurveyForm({ createSurvey, addNewSurvey, onClose }) {
                        </Stack>
                    })}
                    <Stack marginBottom={1} ><Button variant='outlined' onClick={()=>{setstep(step+1); addQuestions()}} >Add Question</Button></Stack>
-                   <Stack margin="dense" ><Button variant='contained' onClick={()=>{addNewSurvey(questions)}} margin="dense">Finish</Button></Stack>
+                   <Stack margin="dense" ><Button variant='contained' onClick={()=>{addNewSurvey(surveyMetadata, questions)}} margin="dense">Finish</Button></Stack>
                    </>
                 }
 
