@@ -17,9 +17,10 @@ export default function App() {
   const [haveMetamask, sethaveMetamask] = useState(false);
 
   const { ethereum } = window;
- const { 
-  loadBlockchainData 
-} = useWallet(accountAddress);
+  const {
+    loadBlockchainData,
+    createSurvey
+  } = useWallet(accountAddress);
   useEffect(() => {
     const { ethereum } = window;
     const checkMetamaskAvailability = async () => {
@@ -51,9 +52,9 @@ export default function App() {
       <StyledChart />
       {!haveMetamask && <div>Metamask wallet not found!</div>}
       {haveMetamask && !isConnected && <button className="btn" onClick={connectWallet}>
-  Connect
-</button>}
-      {isConnected && <Router />}
+        Connect
+      </button>}
+      {isConnected && <Router createSurvey={createSurvey}/>}
     </ThemeProvider>
   );
 }

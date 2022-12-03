@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Button, Modal, Box, TextField } from '@mui/material';
 import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
 // mock
-import PRODUCTS from '../_mock/products';
+
 // components
 import Iconify from '../components/iconify';
 // sections
@@ -29,12 +29,55 @@ import CreateSurveyForm from 'src/components/CreateSurvey';
 const infuraProjectId = process.env.PRIVATE_GOERLI_ACCOUNT_KEY;
 // ----------------------------------------------------------------------
 
-export default function DashboardAppPage() {
+const init_data = [
+  {
+    name: "Survey #1",
+    reward: "0.5",
+    participant_count: "9",
+    status: 'Active'
+  },
+  {
+    name: "Survey #3",
+    reward: "0.01",
+    participant_count: "22",
+    status: 'Active'
+  },
+  {
+    name: "Survey #4",
+    reward: "0.001",
+    participant_count: "5",
+    status: 'Closed'
+  },
+  {
+    name: "Survey #7",
+    reward: "0.8",
+    participant_count: "1",
+    status: 'Claim'
+  },
+  {
+    name: "Survey #9",
+    reward: "0.001",
+    participant_count: "5",
+    status: 'Active'
+  },
+  {
+    name: "Survey #10",
+    reward: "0.8",
+    participant_count: "1",
+    status: 'Active'
+  },
+]
+
+export default function DashboardAppPage({ createSurvey }) {
+  const [surveys, setSurveys] = useState(init_data)
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const addNewSurvey = () => {
+    handleClose()
+  }
   return (
     <>
       <Helmet>
@@ -75,7 +118,7 @@ export default function DashboardAppPage() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <CreateSurveyForm/>
+        <CreateSurveyForm createSurvey={createSurvey} addNewSurvey={addNewSurvey} />
       </Modal>
     </>
   );

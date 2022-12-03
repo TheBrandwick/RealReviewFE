@@ -12,14 +12,16 @@ import DashboardAppPage from './pages/DashboardAppPage';
 
 // ----------------------------------------------------------------------
 
-export default function Router() {
+export default function Router({
+  createSurvey
+}) {
   const routes = useRoutes([
     {
       path: '/',
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
+        { path: 'app', element: <DashboardAppPage createSurvey={createSurvey} /> },
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
