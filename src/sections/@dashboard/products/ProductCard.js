@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 // @mui
-import { Box, Card, Link, Typography, Stack, Button } from '@mui/material';
+import { Box, Card, Link, Typography, Stack, Button, Modal } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 // components
 import Label from '../../../components/label';
 import { ColorPreview } from '../../../components/color-utils';
+import { useState } from 'react';
+import AttemptSurveyForm from 'src/components/AttemptSurvey';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +28,9 @@ ShopProductCard.propTypes = {
 
 export default function ShopProductCard({ product }) {
   const { name, cover, price, colors, status, priceSale } = product;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Card>
@@ -63,8 +68,16 @@ export default function ShopProductCard({ product }) {
           {product?.reward} Eth
           </Typography>
         </Stack>
-        <Button>Review</Button>
+        <Button onClick={handleOpen}>Review</Button>
       </Stack>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <AttemptSurveyForm surveyData={product} onClose={handleClose} />
+      </Modal>
     </Card>
   );
 }

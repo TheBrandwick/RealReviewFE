@@ -8,6 +8,8 @@ import ScrollToTop from './components/scroll-to-top';
 import { StyledChart } from './components/chart';
 
 import useWallet from './hooks/useWallet';
+import { Stack } from '@mui/system';
+import { Button, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -51,9 +53,10 @@ export default function App() {
       <ScrollToTop />
       <StyledChart />
       {!haveMetamask && <div>Metamask wallet not found!</div>}
-      {haveMetamask && !isConnected && <button className="btn" onClick={connectWallet}>
-        Connect
-      </button>}
+      {haveMetamask && !isConnected && <Stack direction="column" justifyContent="center" alignItems="center" height="100vh">
+        <Typography variant='h2'>Welcome to RealReview!</Typography>
+        <Button onClick={connectWallet} variant="contained" size='large'>Connect Wallet</Button>
+        </Stack>}
       {isConnected && <Router createSurvey={createSurvey}/>}
     </ThemeProvider>
   );

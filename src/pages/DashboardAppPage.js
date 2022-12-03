@@ -37,37 +37,253 @@ const init_data = [
     reward: "0.5",
     participant_count: "9",
     status: 'Active',
+    questions: [
+      {
+          "title": "Favorite Breverage?",
+          "options": [
+              {
+                  "title": "Tea"
+              },
+              {
+                  "title": "Coffee"
+              },
+              {
+                  "title": "Cold Drink"
+              },
+              {
+                  "title": "Shakes"
+              }
+          ]
+      },
+      {
+          "title": "Favorite Programming Language",
+          "options": [
+              {
+                  "title": "Python"
+              },
+              {
+                  "title": "Solidity"
+              },
+              {
+                  "title": "Javascript"
+              },
+              {
+                  "title": "Rust"
+              }
+          ]
+      }
+  ]
 
   },
   {
     name: "Survey #3",
     reward: "0.01",
     participant_count: "22",
-    status: 'Active'
+    status: 'Active',
+    questions: [
+      {
+          "title": "Favorite Breverage?",
+          "options": [
+              {
+                  "title": "Tea"
+              },
+              {
+                  "title": "Coffee"
+              },
+              {
+                  "title": "Cold Drink"
+              },
+              {
+                  "title": "Shakes"
+              }
+          ]
+      },
+      {
+          "title": "Favorite Programming Language",
+          "options": [
+              {
+                  "title": "Python"
+              },
+              {
+                  "title": "Solidity"
+              },
+              {
+                  "title": "Javascript"
+              },
+              {
+                  "title": "Rust"
+              }
+          ]
+      }
+  ]
   },
   {
     name: "Survey #4",
     reward: "0.001",
     participant_count: "5",
-    status: 'Closed'
+    status: 'Closed',
+    questions: [
+      {
+          "title": "Favorite Breverage?",
+          "options": [
+              {
+                  "title": "Tea"
+              },
+              {
+                  "title": "Coffee"
+              },
+              {
+                  "title": "Cold Drink"
+              },
+              {
+                  "title": "Shakes"
+              }
+          ]
+      },
+      {
+          "title": "Favorite Programming Language",
+          "options": [
+              {
+                  "title": "Python"
+              },
+              {
+                  "title": "Solidity"
+              },
+              {
+                  "title": "Javascript"
+              },
+              {
+                  "title": "Rust"
+              }
+          ]
+      }
+  ]
   },
   {
     name: "Survey #7",
     reward: "0.8",
     participant_count: "1",
-    status: 'Claim'
+    status: 'Claim',
+    questions: [
+      {
+          "title": "Favorite Breverage?",
+          "options": [
+              {
+                  "title": "Tea"
+              },
+              {
+                  "title": "Coffee"
+              },
+              {
+                  "title": "Cold Drink"
+              },
+              {
+                  "title": "Shakes"
+              }
+          ]
+      },
+      {
+          "title": "Favorite Programming Language",
+          "options": [
+              {
+                  "title": "Python"
+              },
+              {
+                  "title": "Solidity"
+              },
+              {
+                  "title": "Javascript"
+              },
+              {
+                  "title": "Rust"
+              }
+          ]
+      }
+  ]
   },
   {
     name: "Survey #9",
     reward: "0.001",
     participant_count: "5",
-    status: 'Active'
+    status: 'Active',
+    questions: [
+      {
+          "title": "Favorite Breverage?",
+          "options": [
+              {
+                  "title": "Tea"
+              },
+              {
+                  "title": "Coffee"
+              },
+              {
+                  "title": "Cold Drink"
+              },
+              {
+                  "title": "Shakes"
+              }
+          ]
+      },
+      {
+          "title": "Favorite Programming Language",
+          "options": [
+              {
+                  "title": "Python"
+              },
+              {
+                  "title": "Solidity"
+              },
+              {
+                  "title": "Javascript"
+              },
+              {
+                  "title": "Rust"
+              }
+          ]
+      }
+  ]
   },
   {
     name: "Survey #10",
     reward: "0.8",
     participant_count: "1",
-    status: 'Active'
+    status: 'Active',
+    questions: [
+      {
+          "title": "Favorite Breverage?",
+          "options": [
+              {
+                  "title": "Tea"
+              },
+              {
+                  "title": "Coffee"
+              },
+              {
+                  "title": "Cold Drink"
+              },
+              {
+                  "title": "Shakes"
+              }
+          ]
+      },
+      {
+          "title": "Favorite Programming Language",
+          "options": [
+              {
+                  "title": "Python"
+              },
+              {
+                  "title": "Solidity"
+              },
+              {
+                  "title": "Javascript"
+              },
+              {
+                  "title": "Rust"
+              }
+          ]
+      }
+  ]
   },
 ]
 
@@ -86,13 +302,14 @@ export default function DashboardAppPage({ createSurvey }) {
       status: 'Active',
       questions: questions
     }
+    console.log({new_data})
     setTimeout(()=>{
       handleClose()
       setTimeout(()=>{
         setSurveys(prev => ([new_data, ...prev]))
-      },1000)
+      },1500)
       
-    },1000)
+    },1500)
    
   }
   return (
