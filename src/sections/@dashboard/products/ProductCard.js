@@ -42,7 +42,7 @@ export default function ShopProductCard({ product }) {
               textTransform: 'uppercase',
             }}
           >
-            Claim
+            {product?.status}
           </Label>
         )}
         <StyledProductImg alt={name} src={'/assets/images/products/review.jpg'} />
@@ -51,7 +51,7 @@ export default function ShopProductCard({ product }) {
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover">
           <Typography variant="subtitle2" noWrap>
-          ETH Global
+          {product?.name}
           </Typography>
         </Link>
 
@@ -60,7 +60,7 @@ export default function ShopProductCard({ product }) {
           <Typography variant="subtitle1">
            
             &nbsp;
-          $22
+          {product?.reward} Eth
           </Typography>
         </Stack>
         <Button>Review</Button>

@@ -110,7 +110,7 @@ export default function DashboardAppPage({ createSurvey }) {
 
 
 
-          <ProductList products={PRODUCTS} />
+          <ProductList products={surveys} />
         </Grid>
       </Container>
 
