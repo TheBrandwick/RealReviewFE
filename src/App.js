@@ -7,6 +7,7 @@ import ThemeProvider from './theme';
 import ScrollToTop from './components/scroll-to-top';
 import { StyledChart } from './components/chart';
 
+import useWallet from './hooks/useWallet';
 
 // ----------------------------------------------------------------------
 
@@ -16,7 +17,9 @@ export default function App() {
   const [haveMetamask, sethaveMetamask] = useState(false);
 
   const { ethereum } = window;
-
+ const { 
+  loadBlockchainData 
+} = useWallet(accountAddress);
   useEffect(() => {
     const { ethereum } = window;
     const checkMetamaskAvailability = async () => {

@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker';
 
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography,Stack,Button ,Modal,Box,TextField} from '@mui/material';
+import { Grid, Container, Typography, Stack, Button, Modal, Box, TextField } from '@mui/material';
 import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
 // mock
 import PRODUCTS from '../_mock/products';
@@ -25,22 +25,15 @@ import {
   AppConversionRates,
 } from '../sections/@dashboard/app';
 
+import CreateSurveyForm from 'src/components/CreateSurvey';
+
+
 const infuraProjectId = process.env.PRIVATE_GOERLI_ACCOUNT_KEY;
 // ----------------------------------------------------------------------
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+
 export default function DashboardAppPage() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -56,9 +49,9 @@ export default function DashboardAppPage() {
 
         </Typography>
         <Stack direction="row" alignItems={"flex-end"} justifyContent={"flex-end"} spacing={1} flexShrink={0} sx={{ my: 2 }}>
-         <Button onClick={handleOpen} variant="contained">Create Survey</Button>
-            
-          </Stack>
+          <Button onClick={handleOpen} variant="contained">Create Survey</Button>
+
+        </Stack>
         <Grid container spacing={3} sx={{ my: 2 }}>
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="Review Given" total={714000} icon={'ant-design:book-filled'} />
@@ -72,28 +65,20 @@ export default function DashboardAppPage() {
             <AppWidgetSummary title="Nft Collected" total={1723315} color="warning" icon={'ant-design:smile-filled'} />
           </Grid>
 
-          
+
 
           <ProductList products={PRODUCTS} />
         </Grid>
       </Container>
 
       <Modal
-  open={open}
-  onClose={handleClose}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
->
-  <Box sx={style} >
-  <Typography id="modal-modal-title" variant="h6" component="h2">
-      Create Your Survey
-    </Typography>
-    <TextField fullWidth label="Name" id="name" />
-    <TextField type="number" fullWidth label="Partcipants" id="name" />
-
-  <TextField fullWidth label="Type Your Question" id="fullWidth" />
-  </Box>
-</Modal>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <CreateSurveyForm/>
+      </Modal>
     </>
   );
 }
