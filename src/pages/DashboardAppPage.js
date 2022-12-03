@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography } from '@mui/material';
+import { Grid, Container, Typography,Stack,Button } from '@mui/material';
 import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
 // mock
 import PRODUCTS from '../_mock/products';
@@ -51,8 +51,11 @@ export default function DashboardAppPage() {
 	</div>
 </div>
         </Typography>
-
-        <Grid container spacing={3}>
+        <Stack direction="row" alignItems={"flex-end"} justifyContent={"flex-end"} spacing={1} flexShrink={0} sx={{ my: 2 }}>
+         <Button variant="contained">Create Survey</Button>
+            
+          </Stack>
+        <Grid container spacing={3} sx={{ my: 2 }}>
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary title="Review Given" total={714000} icon={'ant-design:book-filled'} />
           </Grid>
