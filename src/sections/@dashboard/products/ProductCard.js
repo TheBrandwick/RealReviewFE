@@ -45,7 +45,7 @@ export default function ShopProductCard({ product }) {
             Claim
           </Label>
         )}
-        <StyledProductImg alt={name} src={cover} />
+        <StyledProductImg alt={name} src={'/assets/images/products/review.jpg'} />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
