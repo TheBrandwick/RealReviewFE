@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-/** 
+/**
  * @title RealReview
  * Implements survey logic
  */
 contract RealReview {
-
+    mapping (uint256 => mapping (address => Participant)) survey_participant_relation;
     struct Survey {
-        mapping(address => Participant) participants;
         uint256 id;
         address creator;
         uint256 max_participants_count;
@@ -44,9 +43,9 @@ contract RealReview {
     Survey[] public surveys;
     mapping(address => User) users;
 
-    // function getSurveys() public view returns (Survey[] memory) {
-    //     return surveys;
-    // }
+    function getSurveys() public view returns (Survey[] memory) {
+        return surveys;
+    }
 
     function createSurvey(
         uint256 max_participants_count,
@@ -56,22 +55,22 @@ contract RealReview {
         bool is_active,
         string memory form_uri
     ) public payable {
-        // uint256 amount_to_deposit = reward_per_participant * max_participants_count;
-        // require(msg.value == amount_to_deposit, "Less ether recieved than required." );
+        uint256 amount_to_deposit = reward_per_participant * max_participants_count;
+        require(msg.value >= amount_to_deposit, "Less ether recieved than required." );
         Survey storage newSurvey = surveys.push();
-        newSurvey.id= surveys.length;
-        newSurvey.creator= msg.sender;
-        newSurvey.max_participants_count= max_participants_count;
-        newSurvey.current_participants_count= 0;
-        newSurvey.reward_per_participant= reward_per_participant;
-        newSurvey.valid_until= valid_until;
-        newSurvey.is_draft= is_draft;
-        newSurvey.is_active= is_active;
-        newSurvey.form_uri= form_uri;
+        newSurvey.id = surveys.length;
+        newSurvey.creator = msg.sender;
+        newSurvey.max_participants_count = max_participants_count;
+        newSurvey.current_participants_count = 0;
+        newSurvey.reward_per_participant = reward_per_participant;
+        newSurvey.valid_until = valid_until;
+        newSurvey.is_draft = is_draft;
+        newSurvey.is_active = is_active;
+        newSurvey.form_uri = form_uri;
     }
-    function updateSurvey() public {
 
-    }
+    function updateSurvey() public {}
+
     function participateSurvey(uint256 survey_index, uint256 user_id) public {
         Survey storage target_survey = surveys[survey_index];
         // check if participant slot left
@@ -82,23 +81,28 @@ contract RealReview {
         new_participant.survey_id = survey_index;
         new_participant.completed = false;
         new_participant.rewarded = false;
-
-        target_survey.participants[msg.sender] = new_participant;
+survey_participant_relation[survey_index][msg.sender] = new_participant;
     }
-    function submitSurvey(uint256 survey_index, string memory form_submission_uri) public {
+
+    function submitSurvey(
+        uint256 survey_index,
+        string memory form_submission_uri
+    ) public {
         Survey storage target_survey = surveys[survey_index];
         // check if participated or not
-        target_survey.participants[msg.sender].form_submission_uri = form_submission_uri;
-        target_survey.participants[msg.sender].completed = true;
+        survey_participant_relation[survey_index][msg.sender]
+            .form_submission_uri = form_submission_uri;
+        survey_participant_relation[survey_index][msg.sender].completed = true;
     }
+
     function claimReward(uint256 survey_index) public payable {
         Survey storage target_survey = surveys[survey_index];
         // check if the user has participated and submitted
         sendReward(msg.sender, target_survey.reward_per_participant);
-        target_survey.participants[msg.sender].rewarded = true;
-
+        survey_participant_relation[survey_index][msg.sender].rewarded = true;
     }
-    function sendReward(address to, uint value) private {
+
+    function sendReward(address to, uint256 value) private {
         address payable receiver = payable(to);
         receiver.transfer(value);
     }
