@@ -1,4 +1,4 @@
-import { useWeb3 } from '@openzeppelin/network/react';
+
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
@@ -28,8 +28,7 @@ const infuraProjectId = process.env.PRIVATE_GOERLI_ACCOUNT_KEY;
 
 export default function DashboardAppPage() {
   const theme = useTheme();
-  const web3Context = useWeb3(`wss://ropsten.infura.io/ws/v3/${infuraProjectId}`);
-  const { networkId, networkName, providerName } = web3Context;
+
   return (
     <>
       <Helmet>
@@ -39,17 +38,7 @@ export default function DashboardAppPage() {
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
           Hi, Welcome to RealReview
-          <div className="App">
-	<div>
-	<h1>Infura + IPFS dApp</h1>
-		<div>
-    	Network: {networkId ? `${networkId} – ${networkName}` : 'No connection'}
-		</div>
-		<div>
-		Provider: {providerName}
-		</div>
-	</div>
-</div>
+
         </Typography>
         <Stack direction="row" alignItems={"flex-end"} justifyContent={"flex-end"} spacing={1} flexShrink={0} sx={{ my: 2 }}>
          <Button variant="contained">Create Survey</Button>
