@@ -55,9 +55,9 @@ export default function App() {
       {!haveMetamask && <div>Metamask wallet not found!</div>}
       {haveMetamask && !isConnected && <Stack direction="column" justifyContent="center" alignItems="center" height="100vh">
         <Typography variant='h2'>Welcome to RealReview!</Typography>
-        <Button onClick={connectWallet} variant="contained" size='large'>Connect Wallet</Button>
+        <Button onClick={connectWallet} variant="contained" size='largegita '>Connect Wallet</Button>
         </Stack>}
-      {isConnected && <Router createSurvey={createSurvey}/>}
+      {isConnected && <Router createSurvey={createSurvey} accountAddress={accountAddress}/>}
     </ThemeProvider>
   );
 }

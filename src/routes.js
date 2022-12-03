@@ -13,12 +13,13 @@ import DashboardAppPage from './pages/DashboardAppPage';
 // ----------------------------------------------------------------------
 
 export default function Router({
-  createSurvey
+  createSurvey,
+  accountAddress
 }) {
   const routes = useRoutes([
     {
       path: '/',
-      element: <DashboardLayout />,
+      element: <DashboardLayout accountAddress={accountAddress} />,
       children: [
         { element: <Navigate to="/app" />, index: true },
         { path: 'app', element: <DashboardAppPage createSurvey={createSurvey} /> },
